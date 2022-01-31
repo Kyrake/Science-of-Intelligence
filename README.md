@@ -3,7 +3,10 @@
 # Plots
 
 ![alt text](<./Strategies.png>) 
-
+![alt text](<./Dimension.png>) 
+![alt text](<./Age.png>) 
+![alt text](<./Gender.png>) 
+![alt text](<./Education.png>) 
 
 ## Getting started
 
