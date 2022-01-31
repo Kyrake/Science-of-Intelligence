@@ -1,5 +1,8 @@
 # ConceptsOfIntelligence
 
+# Plots
+
+![alt text](<./Strategies.png>) 
 
 
 ## Getting started
