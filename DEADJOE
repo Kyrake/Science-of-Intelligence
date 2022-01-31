@@ -1,0 +1,60 @@
+
+*** Modified files in JOE when it aborted on Mon Jan 31 21:42:24 2022
+*** JOE was aborted because the terminal closed
+
+*** File '/home/kyra/IntelligenceProject/.git/MERGE_MSG'
+asS
+q
+aw^Q
+Merge branch 'main'
+
+^X
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+sdasdads 
+quit
+exit
+^quit
+#quit
+#q
+^q
+
+*** Modified files in JOE when it aborted on Mon Jan 31 21:43:54 2022
+*** JOE was aborted because the terminal closed
+
+*** File '/home/kyra/IntelligenceProject/.git/COMMIT_EDITMSG'
+Merge branch 'main'
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'ConceptsOfIntelligence/master'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   .gitlab-ci.yml
+#	new file:   README.md
+#
+# Untracked files:
+#	.RData
+#	.Rhistory
+#	.Rproj.user/
+#	DEADJOE
+#
+asdas
+^q
+
+kx
+*** Modified files in JOE when it aborted on Mon Jan 31 23:55:33 2022
+*** JOE was aborted because the terminal closed

@@ -142,25 +142,17 @@ StandardMethodChla %>%
 ##Education#[EN06]
 
 education_intelligence_score <- function(int_table_education){
-  
   sum_list1 = list()
-  #print(length(data_intelligence_alldata))
   catch <- grep("^V" , names(data_intelligence_alldata))
   sumi <- 0
-  mean_count <- 0
   do_append <- FALSE
   for(i in 1:length(data_intelligence_alldata)){
     sumi <- 0
     do_append <- FALSE
     for(j in 1:length(catch)){
-      #sumi <- 0
       if(catch[j] == i){
-        # print(j)
-        mean_count <- mean_count + 1
         listo <- int_table_education[, catch[j]]
-        #print(intelligence_score_gender_female_1[, catch[j]])
         listo <- as.numeric(listo)
-        #print(sum(listo[!is.na(listo)], na.rm = TRUE))
         meanu <- mean(listo[!is.na(listo)], na.rm = TRUE)
         sumi <- sumi + sum(listo[!is.na(listo)], na.rm = TRUE)
         mean_length = length(which(!is.na(listo)))
@@ -170,15 +162,13 @@ education_intelligence_score <- function(int_table_education){
     
     if(do_append){
       sum_list1 = c(sum_list1, list(meanu))
-      #print(sum_list1)
     }
   } 
-  #print(sum_list1)
   sum_list1 <- as.numeric(sum_list1)
   result <-  mean(sum_list1[!is.na(sum_list1)], na.rm = TRUE)
-  print("======================================")
-  print(result)
-  return(result)
+  semi <- sd(sum_list1[!is.na(sum_list1)], na.rm = TRUE)/sqrt(length(sum_list1[!is.na(sum_list1)]))
+  result_data = data.frame(Mean = result, SEM = semi)
+  return(result_data)
   
 }
 get_value_education_list <- function(){
@@ -191,23 +181,37 @@ get_value_education_list <- function(){
                         intelligence_score_education_7 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==7,]
   )
   
+  
+  sem_list = list()
   mean_list = list()
   for(item in education_list){
     value_education = education_intelligence_score(item)
-    mean_list = c(mean_list, value_education)
+    mean_list = c(mean_list, value_education$Mean)
+    sem_list = c(sem_list, value_education$SEM)
   }
   mean_list <- as.numeric(mean_list)
-  return(mean_list)
+  sem_list <- as.numeric(sem_list)
+  res_frame <-data.frame(Mean = mean_list, SEM = sem_list)
+  return(res_frame)
 }
 
+value_education_frame = get_value_education_list()
+value_education = value_education_frame$Mean
+print(value_education)
+sem_education = value_education_frame$SEM
+diff_education = value_education-sem_education
+diffo_education = value_education+sem_education
+
 my.labels <- c("High school \n or equivalent","Apprenticeship, \n technical \n or occupational certificate","Bachelor’s degree","Master’s degree","PhD","Other","I prefer not to answer") # first create labels, add \n where appropriate.
-value_education = get_value_education_list()
+# = get_value_education_list()
 data_education <- data.frame(
   Education=c("High school or equivalent","Apprenticeship/technical or occupational certificate","Bachelor’s degree","Master’s degree","PhD","Other","I prefer not to answer") ,  
-  Value=value_education
+yukj=value_education
 )
-ggplot(data_education, aes(x=Education, y=Value)) + ylim(0,6)+
-  geom_bar(stat = "identity", fill="light green")+  scale_x_discrete(labels= my.labels)
+ggplot(data_education, aes(x=Education, y=yukj)) + ylim(0,6)+
+  geom_bar(stat = "identity", fill="light green")+  scale_x_discrete(labels= my.labels)+
+  geom_errorbar(aes(ymin=diff_education, ymax=diffo_education), width=.2, colour="black", 
+                position=position_dodge(.9))
 
 ###Gender##[EN04]
 
@@ -215,23 +219,17 @@ ggplot(data_education, aes(x=Education, y=Value)) + ylim(0,6)+
 gender_intelligence_score <- function(int_table_age){
   
   sum_list1 = list()
-  #print(length(data_intelligence_alldata))
   catch <- grep("^V" , names(data_intelligence_alldata))
   sumi <- 0
-  mean_count <- 0
   do_append <- FALSE
   for(i in 1:length(data_intelligence_alldata)){
     sumi <- 0
     do_append <- FALSE
     for(j in 1:length(catch)){
-      #sumi <- 0
       if(catch[j] == i){
-        # print(j)
         mean_count <- mean_count + 1
         listo <- int_table_age[, catch[j]]
-        #print(intelligence_score_gender_female_1[, catch[j]])
         listo <- as.numeric(listo)
-        #print(sum(listo[!is.na(listo)], na.rm = TRUE))
         meanu <- mean(listo[!is.na(listo)], na.rm = TRUE)
         sumi <- sumi + sum(listo[!is.na(listo)], na.rm = TRUE)
         mean_length = length(which(!is.na(listo)))
@@ -247,9 +245,10 @@ gender_intelligence_score <- function(int_table_age){
   #print(sum_list1)
   sum_list1 <- as.numeric(sum_list1)
   result <-  mean(sum_list1[!is.na(sum_list1)], na.rm = TRUE)
-  print("======================================")
-  print(result)
-  return(result)
+  semi <- sd(sum_list1[!is.na(sum_list1)], na.rm = TRUE)/sqrt(length(sum_list1[!is.na(sum_list1)]))
+  
+  result_data = data.frame(Mean = result, SEM = semi)
+  return(result_data)
   
 }
 get_value_gender_list <- function(){
@@ -259,22 +258,34 @@ get_value_gender_list <- function(){
                      intelligence_score_gender_4 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==4,]
   )
   
+  
   mean_list = list()
+  sem_list = list()
   for(item in gender_list){
     value_gender = gender_intelligence_score(item)
-    mean_list = c(mean_list, value_gender)
+    mean_list = c(mean_list, value_gender$Mean)
+    sem_list = c(sem_list, value_gender$SEM)
   }
   mean_list <- as.numeric(mean_list)
-  return(mean_list)
+  sem_list <- as.numeric(sem_list)
+  res_frame <-data.frame(Mean = mean_list, SEM = sem_list)
+  return(res_frame)
 }
 
-value_gender = get_value_gender_list()
+value_gender_frame = get_value_gender_list()
+value_gender = value_gender_frame$Mean
+sem_gender = value_gender_frame$SEM
+diff = value_gender-sem_gender
+diffo = value_gender+sem_gender
+
 data_gender <- data.frame(
   Gender=c("female","male","diverse","I prefer not to answer") ,  
   Value=value_gender
 )
+
 ggplot(data_gender, aes(x=Gender, y=Value)) +ylim(0,6)+ 
-  geom_bar(stat = "identity", fill = "#FF6666")
+  geom_bar(stat = "identity", fill = "#FF6666")+geom_errorbar(aes(ymin=diff, ymax=diffo), width=.2, colour="black", 
+                                                              position=position_dodge(.9))
 
 ###Age##[EN03]
 
@@ -313,9 +324,9 @@ age_intelligence_score <- function(int_table_age){
   #print(sum_list1)
   sum_list1 <- as.numeric(sum_list1)
   result <-  mean(sum_list1[!is.na(sum_list1)], na.rm = TRUE)
-  print("======================================")
-  print(result)
-  return(result)
+  semi <- sd(sum_list1[!is.na(sum_list1)], na.rm = TRUE)/sqrt(length(sum_list1[!is.na(sum_list1)]))
+  result_data = data.frame(Mean = result, SEM = semi)
+  return(result_data)
   
 }
 get_value_age_list <- function(){
@@ -331,19 +342,29 @@ get_value_age_list <- function(){
   )
   
   mean_list = list()
-  #print(intelligence_score_age_7 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==7,])
+  sem_list = list()
   for(item in age_list){
-    #item = item
-    #print(item)
+
     value_age = age_intelligence_score(item)
-    mean_list = c(mean_list, value_age)
+    
+    mean_list = c(mean_list, value_age$Mean)
+    mean_list <- c(mean_list)
+    sem_list = c(sem_list, value_age$SEM)
+    sem_list = c(sem_list)
+    print(sem_list)
   }
-  mean_list <- c(mean_list, list(0, 0, 0))
-  mean_list <- as.numeric(mean_list)
-  return(mean_list)
+
+  mean_list <- as.numeric(c(mean_list,list(0, 0, 0)))
+  sem_list <- as.numeric(c(sem_list, list(0, 0, 0)))
+  res_frame <-data.frame(Mean = mean_list, SEM = sem_list)
+  return(res_frame)
 }
 
-value_age = get_value_age_list()
+value_age_frame = get_value_age_list()
+value_age = value_age_frame$Mean
+sem_age = value_age_frame$SEM
+diff_age = value_age-sem_age
+diffo_age = value_age+sem_age
 data_age <- data.frame(
   Age=c("[18-25]","[26-35]","[36-45]","[46-55]","[56-65]",
         "[66-75]","[76-85]", "[85+]", "I prefer not to answer") ,
@@ -351,6 +372,8 @@ data_age <- data.frame(
 )
 ggplot(data_age, aes(x=Age, y=Value)) +
   ylim(0,6)+
-  geom_bar(stat = "identity",fill = "light blue")
+  geom_bar(stat = "identity",fill = "light blue")+
+  geom_errorbar(aes(ymin=diff_age, ymax=diffo_age), width=.2, colour="black", 
+                position=position_dodge(.9))
 
 
