@@ -54,23 +54,23 @@ notembodied_navigation = c(lockbox8, lockbox10, lockbox12)
 Strategy = c("Representation", "Linear Search", "Random Guess")
 
 plot(1:3, embodied_lockbox , ylab="Strategies", xaxt = "none", xlab = "tenor", type="o", col="red", lty=2,ann=FALSE)+
-lines(1:3,notembodied_lockbox, type="o", col="red", ann=FALSE)+
-lines(1:3,embodied_navigation, type="o", col="blue",lty=2, ann=FALSE)+
-lines(1:3,notembodied_navigation, type="o", col="blue", ann=FALSE)
+  lines(1:3,notembodied_lockbox, type="o", col="red", ann=FALSE)+
+  lines(1:3,embodied_navigation, type="o", col="blue",lty=2, ann=FALSE)+
+  lines(1:3,notembodied_navigation, type="o", col="blue", ann=FALSE)
 axis(side = 1, at = 1:3, labels = Strategy)
 legend(x="topright", 1, legend=c("Lockbox embodied", "Lockbox not embodied", "Navigation embodied", "Navigation not embodied"),   col=c("red", "red", "blue", "blue"), lty=2:1, cex=0.8)
 arrows(1, lockbox1-lockbox1sd, 1, lockbox1+lockbox1sd, length=0.05, angle=90, code=3)
-arrows(2, lockbox2-lockbox2sd, 2, lockbox2+lockbox2sd, length=0.05, angle=90, code=3)
-arrows(3, lockbox3-lockbox3sd, 3, lockbox2+lockbox3sd, length=0.05, angle=90, code=3)
-arrows(4, lockbox4-lockbox4sd, 4, lockbox2+lockbox4sd, length=0.05, angle=90, code=3)
-arrows(5, lockbox5-lockbox5sd, 5, lockbox2+lockbox5sd, length=0.05, angle=90, code=3)
-arrows(6, lockbox6-lockbox6sd, 6, lockbox2+lockbox6sd, length=0.05, angle=90, code=3)
-arrows(7, lockbox7-lockbox7sd, 7, lockbox2+lockbox7sd, length=0.05, angle=90, code=3)
-arrows(8, lockbox8-lockbox8sd, 8, lockbox2+lockbox8sd, length=0.05, angle=90, code=3)
-arrows(9, lockbox9-lockbox9sd, 9, lockbox2+lockbox9sd, length=0.05, angle=90, code=3)
-arrows(10, lockbox10-lockbox10sd, 10, lockbox2+lockbox10sd, length=0.05, angle=90, code=3)
-arrows(11, lockbox11-lockbox11sd, 11, lockbox2+lockbox11sd, length=0.05, angle=90, code=3)
-arrows(12, lockbox12-lockbox12sd, 12, lockbox2+lockbox12sd, length=0.05, angle=90, code=3)
+arrows(1, lockbox2-lockbox2sd, 1, lockbox2+lockbox2sd, length=0.05, angle=90, code=3)
+arrows(2, lockbox3-lockbox3sd, 2, lockbox3+lockbox3sd, length=0.05, angle=90, code=3)
+arrows(2, lockbox4-lockbox4sd, 2, lockbox4+lockbox4sd, length=0.05, angle=90, code=3)
+arrows(3, lockbox5-lockbox5sd, 3, lockbox5+lockbox5sd, length=0.05, angle=90, code=3)
+arrows(3, lockbox6-lockbox6sd, 3, lockbox6+lockbox6sd, length=0.05, angle=90, code=3)
+arrows(1, lockbox7-lockbox7sd, 1, lockbox7+lockbox7sd, length=0.05, angle=90, code=3)
+arrows(1, lockbox8-lockbox8sd, 1, lockbox8+lockbox8sd, length=0.05, angle=90, code=3)
+arrows(2, lockbox9-lockbox9sd, 2, lockbox9+lockbox9sd, length=0.05, angle=90, code=3)
+arrows(2, lockbox10-lockbox10sd, 2, lockbox10+lockbox10sd, length=0.05, angle=90, code=3)
+arrows(3, lockbox11-lockbox11sd, 3, lockbox11+lockbox11sd, length=0.05, angle=90, code=3)
+arrows(3, lockbox12-lockbox12sd, 3, lockbox12+lockbox12sd, length=0.05, angle=90, code=3)
 
 
 
@@ -78,47 +78,6 @@ arrows(12, lockbox12-lockbox12sd, 12, lockbox2+lockbox12sd, length=0.05, angle=9
 ##################### Social Intelligence ###################
 #6 items (scenarios: item1 = 13-15; item2 = 16-18; item3 = 19-21; item4 = 22-24; item5 = 25-27; item6 = 28-30)
 #Presence: present (scenarios 13, 16, 19, 22, 25, 28), absent (scenarios 14, 17, 20, 23, 26, 29), neutral (scenarios 15, 18, 21, 24, 27, 30)
-
-social_intelligence = c(
- mean(as.numeric(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_14,data_intelligence_alldata$V2_14, data_intelligence_alldata$V3_14, data_intelligence_alldata$V4_14)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_15,data_intelligence_alldata$V2_15, data_intelligence_alldata$V3_15, data_intelligence_alldata$V4_15)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_16,data_intelligence_alldata$V2_16, data_intelligence_alldata$V3_16, data_intelligence_alldata$V4_16)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_17,data_intelligence_alldata$V2_17, data_intelligence_alldata$V3_17, data_intelligence_alldata$V4_17)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_18,data_intelligence_alldata$V2_18, data_intelligence_alldata$V3_18, data_intelligence_alldata$V4_18)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_19,data_intelligence_alldata$V2_19, data_intelligence_alldata$V3_19, data_intelligence_alldata$V4_19)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_20,data_intelligence_alldata$V2_20, data_intelligence_alldata$V3_20, data_intelligence_alldata$V4_20)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_21,data_intelligence_alldata$V2_21, data_intelligence_alldata$V3_21, data_intelligence_alldata$V4_21)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_22,data_intelligence_alldata$V2_22, data_intelligence_alldata$V3_22, data_intelligence_alldata$V4_22)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_23,data_intelligence_alldata$V2_23, data_intelligence_alldata$V3_23, data_intelligence_alldata$V4_23)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_24,data_intelligence_alldata$V2_24, data_intelligence_alldata$V3_24, data_intelligence_alldata$V4_24)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_25,data_intelligence_alldata$V2_25, data_intelligence_alldata$V3_25, data_intelligence_alldata$V4_25)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_26,data_intelligence_alldata$V2_26, data_intelligence_alldata$V3_26, data_intelligence_alldata$V4_26)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_27,data_intelligence_alldata$V2_27, data_intelligence_alldata$V3_27, data_intelligence_alldata$V4_27)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_28,data_intelligence_alldata$V2_28, data_intelligence_alldata$V3_28, data_intelligence_alldata$V4_28)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_29,data_intelligence_alldata$V2_29, data_intelligence_alldata$V3_29, data_intelligence_alldata$V4_29)),  na.rm = TRUE),
- mean(as.numeric(c(data_intelligence_alldata$V1_30,data_intelligence_alldata$V2_30, data_intelligence_alldata$V3_30, data_intelligence_alldata$V4_30)),  na.rm = TRUE)
-)
-soc_int_sd = c(
-sd(as.numeric(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_14,data_intelligence_alldata$V2_14, data_intelligence_alldata$V3_14, data_intelligence_alldata$V4_14)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_15,data_intelligence_alldata$V2_15, data_intelligence_alldata$V3_15, data_intelligence_alldata$V4_15)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_16,data_intelligence_alldata$V2_16, data_intelligence_alldata$V3_16, data_intelligence_alldata$V4_16)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_17,data_intelligence_alldata$V2_17, data_intelligence_alldata$V3_17, data_intelligence_alldata$V4_17)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_18,data_intelligence_alldata$V2_18, data_intelligence_alldata$V3_18, data_intelligence_alldata$V4_18)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_19,data_intelligence_alldata$V2_19, data_intelligence_alldata$V3_19, data_intelligence_alldata$V4_19)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_20,data_intelligence_alldata$V2_20, data_intelligence_alldata$V3_20, data_intelligence_alldata$V4_20)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_21,data_intelligence_alldata$V2_21, data_intelligence_alldata$V3_21, data_intelligence_alldata$V4_21)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_22,data_intelligence_alldata$V2_22, data_intelligence_alldata$V3_22, data_intelligence_alldata$V4_22)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_23,data_intelligence_alldata$V2_23, data_intelligence_alldata$V3_23, data_intelligence_alldata$V4_23)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_24,data_intelligence_alldata$V2_24, data_intelligence_alldata$V3_24, data_intelligence_alldata$V4_24)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_25,data_intelligence_alldata$V2_25, data_intelligence_alldata$V3_25, data_intelligence_alldata$V4_25)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_26,data_intelligence_alldata$V2_26, data_intelligence_alldata$V3_26, data_intelligence_alldata$V4_26)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_27,data_intelligence_alldata$V2_27, data_intelligence_alldata$V3_27, data_intelligence_alldata$V4_27)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_28,data_intelligence_alldata$V2_28, data_intelligence_alldata$V3_28, data_intelligence_alldata$V4_28)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_29,data_intelligence_alldata$V2_29, data_intelligence_alldata$V3_29, data_intelligence_alldata$V4_29)),  na.rm = TRUE),
-sd(as.numeric(c(data_intelligence_alldata$V1_30,data_intelligence_alldata$V2_30, data_intelligence_alldata$V3_30, data_intelligence_alldata$V4_30)),  na.rm = TRUE)
-)
 
 
 
@@ -146,24 +105,24 @@ StandardMethodChla <- data.frame(stringsAsFactors=FALSE,
                                    mean(as.numeric(c(data_intelligence_alldata$V1_30,data_intelligence_alldata$V2_30, data_intelligence_alldata$V3_30, data_intelligence_alldata$V4_30)),  na.rm = TRUE)
                                  ),
                                  soc_int_sd = c(
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_14,data_intelligence_alldata$V2_14, data_intelligence_alldata$V3_14, data_intelligence_alldata$V4_14)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_15,data_intelligence_alldata$V2_15, data_intelligence_alldata$V3_15, data_intelligence_alldata$V4_15)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_16,data_intelligence_alldata$V2_16, data_intelligence_alldata$V3_16, data_intelligence_alldata$V4_16)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_17,data_intelligence_alldata$V2_17, data_intelligence_alldata$V3_17, data_intelligence_alldata$V4_17)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_18,data_intelligence_alldata$V2_18, data_intelligence_alldata$V3_18, data_intelligence_alldata$V4_18)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_19,data_intelligence_alldata$V2_19, data_intelligence_alldata$V3_19, data_intelligence_alldata$V4_19)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_20,data_intelligence_alldata$V2_20, data_intelligence_alldata$V3_20, data_intelligence_alldata$V4_20)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_21,data_intelligence_alldata$V2_21, data_intelligence_alldata$V3_21, data_intelligence_alldata$V4_21)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_22,data_intelligence_alldata$V2_22, data_intelligence_alldata$V3_22, data_intelligence_alldata$V4_22)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_23,data_intelligence_alldata$V2_23, data_intelligence_alldata$V3_23, data_intelligence_alldata$V4_23)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_24,data_intelligence_alldata$V2_24, data_intelligence_alldata$V3_24, data_intelligence_alldata$V4_24)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_25,data_intelligence_alldata$V2_25, data_intelligence_alldata$V3_25, data_intelligence_alldata$V4_25)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_26,data_intelligence_alldata$V2_26, data_intelligence_alldata$V3_26, data_intelligence_alldata$V4_26)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_27,data_intelligence_alldata$V2_27, data_intelligence_alldata$V3_27, data_intelligence_alldata$V4_27)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_28,data_intelligence_alldata$V2_28, data_intelligence_alldata$V3_28, data_intelligence_alldata$V4_28)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_29,data_intelligence_alldata$V2_29, data_intelligence_alldata$V3_29, data_intelligence_alldata$V4_29)),  na.rm = TRUE),
-                                   sd(as.numeric(c(data_intelligence_alldata$V1_30,data_intelligence_alldata$V2_30, data_intelligence_alldata$V3_30, data_intelligence_alldata$V4_30)),  na.rm = TRUE)
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_14,data_intelligence_alldata$V2_14, data_intelligence_alldata$V3_14, data_intelligence_alldata$V4_14)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_15,data_intelligence_alldata$V2_15, data_intelligence_alldata$V3_15, data_intelligence_alldata$V4_15)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_16,data_intelligence_alldata$V2_16, data_intelligence_alldata$V3_16, data_intelligence_alldata$V4_16)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_17,data_intelligence_alldata$V2_17, data_intelligence_alldata$V3_17, data_intelligence_alldata$V4_17)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_18,data_intelligence_alldata$V2_18, data_intelligence_alldata$V3_18, data_intelligence_alldata$V4_18)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_19,data_intelligence_alldata$V2_19, data_intelligence_alldata$V3_19, data_intelligence_alldata$V4_19)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_20,data_intelligence_alldata$V2_20, data_intelligence_alldata$V3_20, data_intelligence_alldata$V4_20)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_21,data_intelligence_alldata$V2_21, data_intelligence_alldata$V3_21, data_intelligence_alldata$V4_21)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_22,data_intelligence_alldata$V2_22, data_intelligence_alldata$V3_22, data_intelligence_alldata$V4_22)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_23,data_intelligence_alldata$V2_23, data_intelligence_alldata$V3_23, data_intelligence_alldata$V4_23)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_24,data_intelligence_alldata$V2_24, data_intelligence_alldata$V3_24, data_intelligence_alldata$V4_24)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_25,data_intelligence_alldata$V2_25, data_intelligence_alldata$V3_25, data_intelligence_alldata$V4_25)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_26,data_intelligence_alldata$V2_26, data_intelligence_alldata$V3_26, data_intelligence_alldata$V4_26)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_27,data_intelligence_alldata$V2_27, data_intelligence_alldata$V3_27, data_intelligence_alldata$V4_27)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_28,data_intelligence_alldata$V2_28, data_intelligence_alldata$V3_28, data_intelligence_alldata$V4_28)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_29,data_intelligence_alldata$V2_29, data_intelligence_alldata$V3_29, data_intelligence_alldata$V4_29)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13))),
+                                   sd(as.numeric(c(data_intelligence_alldata$V1_30,data_intelligence_alldata$V2_30, data_intelligence_alldata$V3_30, data_intelligence_alldata$V4_30)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_13,data_intelligence_alldata$V2_13, data_intelligence_alldata$V3_13, data_intelligence_alldata$V4_13)))
                                  )
 )
 
@@ -177,23 +136,6 @@ StandardMethodChla %>%
   geom_errorbar(aes(ymin=IntelligenceScore-soc_int_sd, ymax=IntelligenceScore+soc_int_sd), width=.2, colour="black", 
                 position=position_dodge(.9))
 
-
-
-# print(presence)
-# social_data <- data.frame( social_intelligence,soc_int_sd, presence, Dimension )
-# print(social_data)
-# 
-# ggplot(social_data, aes(fill=presence, y=social_intelligence, x=Dimension)) + 
-#   geom_bar(position="dodge", stat="identity")+
-# geom_errorbar( aes(x = Dimension, ymin=social_intelligence-soc_int_sd, ymax=social_intelligence+soc_int_sd), width=0.4, colour="orange", alpha=0.9, size=1.5) 
-# 
-#   arrows(1, social_intelligence[[1]]-soc_int_sd[[1]], 1, social_intelligence[[1]]+soc_int_sd[[1]], length=0.05, angle=90, code=3)
-# #print(length(social_intelligence))
-# for(i in 18){
-#   print(i)
-#     arrows(i, social_intelligence[[i]]-soc_int_sd[[i]], i, social_intelligence[[i]]+soc_int_sd[[i]], length=0.05, angle=90, code=3)
-
-#}
 
 ##############################Demographics###############################################################
 
@@ -240,13 +182,13 @@ education_intelligence_score <- function(int_table_education){
   
 }
 get_value_education_list <- function(){
-     education_list = list(intelligence_score_education_1 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==1,],
-                     intelligence_score_education_2 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==2,],
-                     intelligence_score_education_3 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==3,],
-                     intelligence_score_education_4 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==4,],
-                     intelligence_score_education_5 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==5,],
-                     intelligence_score_education_6 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==6,],
-                     intelligence_score_education_7 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==7,]
+  education_list = list(intelligence_score_education_1 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==1,],
+                        intelligence_score_education_2 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==2,],
+                        intelligence_score_education_3 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==3,],
+                        intelligence_score_education_4 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==4,],
+                        intelligence_score_education_5 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==5,],
+                        intelligence_score_education_6 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==6,],
+                        intelligence_score_education_7 <-data_intelligence_alldata[data_intelligence_alldata[["EN06"]]==7,]
   )
   
   mean_list = list()
@@ -312,9 +254,9 @@ gender_intelligence_score <- function(int_table_age){
 }
 get_value_gender_list <- function(){
   gender_list = list(intelligence_score_gender_1 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==1,],
-                  intelligence_score_gender_2 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==2,],
-                  intelligence_score_gender_3 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==3,],
-                  intelligence_score_gender_4 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==4,]
+                     intelligence_score_gender_2 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==2,],
+                     intelligence_score_gender_3 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==3,],
+                     intelligence_score_gender_4 <-data_intelligence_alldata[data_intelligence_alldata[["EN04"]]==4,]
   )
   
   mean_list = list()
@@ -378,15 +320,15 @@ age_intelligence_score <- function(int_table_age){
 }
 get_value_age_list <- function(){
   age_list = list(intelligence_score_age_1 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==1,],
-              intelligence_score_age_2 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==2,],
-              intelligence_score_age_3 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==3,],
-              intelligence_score_age_4 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==4,],
-              intelligence_score_age_5 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==5,],
-              intelligence_score_age_6 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==6,]
-              #intelligence_score_age_7 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==7,],
-              #intelligence_score_age_8 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==8,]
-              #intelligence_score_age_6 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==9,]
-              )
+                  intelligence_score_age_2 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==2,],
+                  intelligence_score_age_3 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==3,],
+                  intelligence_score_age_4 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==4,],
+                  intelligence_score_age_5 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==5,],
+                  intelligence_score_age_6 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==6,]
+                  #intelligence_score_age_7 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==7,],
+                  #intelligence_score_age_8 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==8,]
+                  #intelligence_score_age_6 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==9,]
+  )
   
   mean_list = list()
   #print(intelligence_score_age_7 <-data_intelligence_alldata[data_intelligence_alldata[["EN03"]]==7,])
@@ -404,7 +346,7 @@ get_value_age_list <- function(){
 value_age = get_value_age_list()
 data_age <- data.frame(
   Age=c("[18-25]","[26-35]","[36-45]","[46-55]","[56-65]",
-         "[66-75]","[76-85]", "[85+]", "I prefer not to answer") ,
+        "[66-75]","[76-85]", "[85+]", "I prefer not to answer") ,
   Value= value_age
 )
 ggplot(data_age, aes(x=Age, y=Value)) +
