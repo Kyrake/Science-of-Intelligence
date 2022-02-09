@@ -2,14 +2,36 @@ library(readxl)
 library(ggplot2)
 library(purrr)
 library(tidyverse, quietly = TRUE)
+library(psych)
 data_intelligence_all <- read_excel("~/Downloads/data_intelligence_all.xlsx")
 
 #data_intelligence_all %>% mutate_all(~ replace_na(.x, 0))
-
-
 data_intelligence_alldata = data.frame(data_intelligence_all)
 
+##########     Assumptioncheck for parametric Tests                #####################3333
+##########                Cronbach Alpha                   ######################3
 
+
+Intelligence_data <- data_intelligence_all[,  c(12:23,43:54,74:85,105:116)]
+Intelligence_data_a <- data_intelligence_all[,  c(12:23)]
+Intelligence_data = Intelligence_data[-1,]
+Social_data <- data_intelligence_all[, c(24:42,55:73,86:104,117:135)]
+Social_data = Social_data[-1,]
+
+myvalues <- as.data.frame(sapply(Intelligence_data, as.numeric))
+Intelligence_data_as <- as.data.frame(sapply(Intelligence_data_a, as.numeric))
+myvalues[is.na(myvalues)] = 0
+psych::alpha(myvalues, check.keys=TRUE)
+
+for (name in colnames(Intelligence_data_as)){
+  #print(name)
+  print(shapiro.test(Intelligence_data_as[,name]))
+}
+
+library (car)
+leveneTest(myvalues$V1_01, myvalues$V1_02)
+
+chisq.test(myvalues$V1_01, myvalues$V1_02)
 #Attribution of intelligence (3 factors)
 #Scenario: lockbox (scenarios 1-6), navigation (scenarios 7-12)
 #Strategy: representation (scenarios 1, 4, 7, 10), linear search (scenarios 2, 5, 8, 11), random guess (3, 6, 9, 12)
@@ -144,7 +166,6 @@ StandardMethodChla %>%
 education_intelligence_score <- function(int_table_education){
   sum_list1 = list()
   catch <- grep("^V" , names(data_intelligence_alldata))
-  sumi <- 0
   do_append <- FALSE
   for(i in 1:length(data_intelligence_alldata)){
     sumi <- 0
@@ -154,8 +175,6 @@ education_intelligence_score <- function(int_table_education){
         listo <- int_table_education[, catch[j]]
         listo <- as.numeric(listo)
         meanu <- mean(listo[!is.na(listo)], na.rm = TRUE)
-        sumi <- sumi + sum(listo[!is.na(listo)], na.rm = TRUE)
-        mean_length = length(which(!is.na(listo)))
         do_append <- TRUE
       }
     }
@@ -220,29 +239,22 @@ gender_intelligence_score <- function(int_table_age){
   
   sum_list1 = list()
   catch <- grep("^V" , names(data_intelligence_alldata))
-  sumi <- 0
   do_append <- FALSE
   for(i in 1:length(data_intelligence_alldata)){
-    sumi <- 0
     do_append <- FALSE
     for(j in 1:length(catch)){
       if(catch[j] == i){
-        mean_count <- mean_count + 1
         listo <- int_table_age[, catch[j]]
         listo <- as.numeric(listo)
         meanu <- mean(listo[!is.na(listo)], na.rm = TRUE)
-        sumi <- sumi + sum(listo[!is.na(listo)], na.rm = TRUE)
-        mean_length = length(which(!is.na(listo)))
         do_append <- TRUE
       }
     }
     
     if(do_append){
       sum_list1 = c(sum_list1, list(meanu))
-      #print(sum_list1)
     }
   } 
-  #print(sum_list1)
   sum_list1 <- as.numeric(sum_list1)
   result <-  mean(sum_list1[!is.na(sum_list1)], na.rm = TRUE)
   semi <- sd(sum_list1[!is.na(sum_list1)], na.rm = TRUE)/sqrt(length(sum_list1[!is.na(sum_list1)]))
@@ -292,36 +304,24 @@ ggplot(data_gender, aes(x=Gender, y=Value)) +ylim(0,6)+
 age_intelligence_score <- function(int_table_age){
   
   sum_list1 = list()
-  #print(length(data_intelligence_alldata))
   catch <- grep("^V" , names(data_intelligence_alldata))
-  sumi <- 0
-  mean_count <- 0
+
   do_append <- FALSE
   for(i in 1:length(data_intelligence_alldata)){
-    sumi <- 0
     do_append <- FALSE
     for(j in 1:length(catch)){
-      #sumi <- 0
       if(catch[j] == i){
-        # print(j)
-        mean_count <- mean_count + 1
         listo <- int_table_age[, catch[j]]
-        #print(intelligence_score_gender_female_1[, catch[j]])
         listo <- as.numeric(listo)
-        #print(sum(listo[!is.na(listo)], na.rm = TRUE))
         meanu <- mean(listo[!is.na(listo)], na.rm = TRUE)
-        sumi <- sumi + sum(listo[!is.na(listo)], na.rm = TRUE)
-        mean_length = length(which(!is.na(listo)))
         do_append <- TRUE
       }
     }
     
     if(do_append){
       sum_list1 = c(sum_list1, list(meanu))
-      #print(sum_list1)
     }
   } 
-  #print(sum_list1)
   sum_list1 <- as.numeric(sum_list1)
   result <-  mean(sum_list1[!is.na(sum_list1)], na.rm = TRUE)
   semi <- sd(sum_list1[!is.na(sum_list1)], na.rm = TRUE)/sqrt(length(sum_list1[!is.na(sum_list1)]))
