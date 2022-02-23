@@ -140,8 +140,8 @@ for(name in colnames(v_levels_en4)){
 
 for(name in colnames(v_levels_en3)){
   if(name != "EN06"){
-    modi6=chisq.test(as.numeric(unlist(table(v_levels_en6[,name], v_levels_en6$EN06))))
-    print(modi6)
+    #modi6=chisq.test(as.numeric(unlist(table(v_levels_en6[,name], v_levels_en6$EN06))))
+    #print(modi6)
   }
 }
 
@@ -351,6 +351,7 @@ plot(likert_en6)
 #error bars displaying Standard Error of the Mean (SEM)
 
 lockbox1 =  mean(as.numeric(c(data_intelligence_alldata$V1_01,data_intelligence_alldata$V2_01, data_intelligence_alldata$V3_01, data_intelligence_alldata$V4_01)),  na.rm = TRUE)
+lockbox1_median =  median(as.numeric(c(data_intelligence_alldata$V1_01,data_intelligence_alldata$V2_01, data_intelligence_alldata$V3_01, data_intelligence_alldata$V4_01)),  na.rm = TRUE)
 lockbox1sd =  sd(as.numeric(c(data_intelligence_alldata$V1_01,data_intelligence_alldata$V2_01, data_intelligence_alldata$V3_01, data_intelligence_alldata$V4_01)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_01,data_intelligence_alldata$V2_01, data_intelligence_alldata$V3_01, data_intelligence_alldata$V4_01)))
 lockbox2 =  mean(as.numeric(c(data_intelligence_alldata$V1_02,data_intelligence_alldata$V2_02, data_intelligence_alldata$V3_02, data_intelligence_alldata$V4_02)),  na.rm = TRUE)
 lockbox2sd =  sd(as.numeric(c(data_intelligence_alldata$V1_02,data_intelligence_alldata$V2_02, data_intelligence_alldata$V3_02, data_intelligence_alldata$V4_02)),  na.rm = TRUE)/sqrt(length(c(data_intelligence_alldata$V1_02,data_intelligence_alldata$V2_02, data_intelligence_alldata$V3_02, data_intelligence_alldata$V4_02)))
