@@ -1,12 +1,12 @@
 # ConceptsOfIntelligence
 
 # Plots
-![alt text](<.Plot/LikertGender.png>) 
-![alt text](<.Plot/Strategies.png>) 
-![alt text](<.Plot/Dimension.png>) 
-![alt text](<.Plot/Age.png>) 
-![alt text](<.Plot/Gender.png>) 
-![alt text](<.Plot/Education.png>) 
+![alt text](<.Plots/LikertGender.png>) 
+![alt text](<.Plots/Strategies.png>) 
+![alt text](<.Plots/Dimension.png>) 
+![alt text](<.Plots/Age.png>) 
+![alt text](<.Plots/Gender.png>) 
+![alt text](<.Plots/Education.png>) 
 
 ## Getting started
 
