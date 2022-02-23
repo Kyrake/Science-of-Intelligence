@@ -195,17 +195,79 @@ for(name in colnames(v_levels_en6)){
 df2 <- mutate_all(merged_v, function(x) as.numeric(as.character(x)))
 merged_clean <-  df2[-c(13,14,15)]
 df2$sum<-as.numeric(apply((merged_clean[,1:12]), 1, sum))
+merged_clean = data_frame(merged_clean)
 
-for(name in colnames(merged_clean)){
-  mod<-polr(formula = V1_01 ~ EN03 + EN04 + EN06, data = merged_v, Hess = T)
-  summary(mod)
-  coeffs <- coef(summary(mod))
-  p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
-  cbind(coeffs, "p value" = round(p,3))
-  
-}
+mod<-polr(formula =  V1_01 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
 
+mod<-polr(formula =  V1_02 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
 
+mod<-polr(formula =  V1_03 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_04 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_05 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_06 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_07 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_08 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_09 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_10 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_11 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
+
+mod<-polr(formula =  V1_12 ,EN03 + EN04 + EN06, data = merged_v, Hess = T)
+summary(mod)
+coeffs <- coef(summary(mod))
+p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+cbind(coeffs, "p value" = round(p,3))
 
 ################ T-Test ###################################
 
