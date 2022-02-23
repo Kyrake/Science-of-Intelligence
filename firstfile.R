@@ -5,6 +5,7 @@ library(tidyverse, quietly = TRUE)
 library(psych)
 library(likert)
 library(MASS)
+library (car)
 
 ######## Read Data ####################3
 data_intelligence_all <- read_excel("~/Downloads/data_intelligence_all.xlsx")
@@ -38,6 +39,11 @@ colnames(v2_data) <- colnames(v1_data)
 colnames(v3_data) <- colnames(v1_data)
 colnames(v4_data) <- colnames(v1_data)
 
+
+myvalues <- as.data.frame(sapply(Intelligence_data, as.numeric))
+Intelligence_data_as <- as.data.frame(sapply(Intelligence_data_a, as.numeric))
+myvalues[is.na(myvalues)] = 0
+
 merged_v <- rbind(v1_data, v2_data)
 merged_v <- rbind(merged_v, v3_data)
 merged_v <- rbind(merged_v, v4_data)
@@ -62,48 +68,7 @@ v_levels_en6 <- merged_v[c(1:12, 15)]
 #v_levels_en3$EN03[v_levels_en3$EN03 == 4] <- "not answered"
 #v_levels_en3$EN03 <- as.factor(v_levels_en4$EN03)
 
-################## Likert Plots ###########################################
 
-#Age
-v_levels_en3$EN03 <- as.character(v_levels_en3$EN03)
-v_levels_en3$EN03[v_levels_en3$EN03 == 1] <- "[18-25]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 2] <- "[26-35]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 3] <- "[36-45]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 4] <- "[46-55]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 5] <- "[56-65]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 6] <- "[66-75]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 7] <- "[76-85]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 8] <- "[<85]"
-v_levels_en3$EN03[v_levels_en3$EN03 == 9] <- "not answered"
-v_levels_en3$EN03 <- as.factor(v_levels_en3$EN03)
-likert_en3 <- likert(v_levels_en3[,1:12], grouping = v_levels_en3$EN03)
-plot(likert_en3)
-
-
-#Gender
-v_levels_en4$EN04 <- as.character(v_levels_en4$EN04)
-v_levels_en4$EN04[v_levels_en4$EN04 == 1] <- "female"
-v_levels_en4$EN04[v_levels_en4$EN04 == 2] <- "male"
-v_levels_en4$EN04[v_levels_en4$EN04 == 3] <- "divers"
-v_levels_en4$EN04[v_levels_en4$EN04 == 4] <- "not answered"
-v_levels_en4$EN04 <- as.factor(v_levels_en4$EN04)
-
-likert_en4 <- likert(v_levels_en4[,1:12], grouping = v_levels_en4$EN04)
-plot(likert_en4)
-
-#Education
-
-v_levels_en6$EN06 <- as.character(v_levels_en6$EN06)
-v_levels_en6$EN06[v_levels_en6$EN06 == 1] <- "High School or equivalent"
-v_levels_en6$EN06[v_levels_en6$EN06 == 2] <- "Apprenticeship/technical or occupational certificate"
-v_levels_en6$EN06[v_levels_en6$EN06 == 3] <- "Bachelor’s degree"
-v_levels_en6$EN06[v_levels_en6$EN06 == 4] <- "Master’s degree"
-v_levels_en6$EN06[v_levels_en6$EN06 == 5] <- "PhD"
-v_levels_en6$EN06[v_levels_en6$EN06 == 6] <- "Other"
-v_levels_en6$EN06[v_levels_en6$EN06 == 6] <- "not answered"
-v_levels_en6$EN06 <- as.factor(v_levels_en6$EN06)
-likert_en6 <- likert(v_levels_en6[,1:12], grouping = v_levels_en6$EN06)
-plot(likert_en6)
 
 ##########     Assumptionchecks for parametric Tests                #####################3333
 
@@ -141,9 +106,13 @@ for (name in colnames(v_levels_en6)){
 ########################## Levene Test ############################################
 
 for(i in 1:length(myvalues)){
-  leveneTest(myvalues[i], myvalues[1+i])
-  
-      }
+  count = i
+  if(count +1 <= length(myvalues)){
+    tab = count +1
+    levi = leveneTest(myvalues[,i], myvalues[,tab])
+    print(levi)
+  }
+}
 
 
 ########################## Chi Square #############################################
@@ -170,66 +139,140 @@ for(name in colnames(v_levels_en3)){
 }
 
 ##########                Cronbach Alpha                   ######################3
-myvalues <- as.data.frame(sapply(Intelligence_data, as.numeric))
-Intelligence_data_as <- as.data.frame(sapply(Intelligence_data_a, as.numeric))
-myvalues[is.na(myvalues)] = 0
+
 psych::alpha(myvalues, check.keys=TRUE)
-
-
-
+psych::alpha(myvalues_social, check.keys=TRUE)
 
 ############ Polynomial Regression #####################
-model <- glm( V1_01 ~ EN03, data = v_levels_en3, family = binomial)
-summary(model)$coef
+for(name in colnames(v_levels_en3)){
+  if(name != "EN03"){
+    model <- glm( V1_01 ~ EN03, data = v_levels_en3, family = binomial)
+    summary(model)$coef
+  }
+}
+
+for(name in colnames(v_levels_en3)){
+  if(name != "EN04"){
+    model <- glm( V1_01 ~ EN04, data = v_levels_en4, family = binomial)
+    summary(model)$coef
+  }
+}
+
+for(name in colnames(v_levels_en3)){
+  if(name != "EN06"){
+    model <- glm( V1_01 ~ EN06, data = v_levels_en6, family = binomial)
+    summary(model)$coef
+  }
+}
+
+
+################ NON parametric tests ###########################
+
+###############Kruskal Wallis ##########################
+for(name in colnames(v_levels_en3)){
+  if(name != "EN03"){
+    k = kruskal.test(V1_01 ~ EN03, v_levels_en3) 
+    print(k)
+  }
+}
+
+for(name in colnames(v_levels_en4)){
+  if(name != "EN04"){
+    k = kruskal.test(V1_01 ~ EN04, v_levels_en4) 
+    print(k)
+  }
+}
+
+for(name in colnames(v_levels_en6)){
+  if(name != "EN06"){
+    k = kruskal.test(V1_01 ~ EN06, v_levels_en6) 
+    print(k)
+  }
+}
+
+
+##############  Ordinal Logistic Regression ##########################
+df2 <- mutate_all(merged_v, function(x) as.numeric(as.character(x)))
+merged_clean <-  df2[-c(13,14,15)]
+df2$sum<-as.numeric(apply((merged_clean[,1:12]), 1, sum))
+
+for(name in colnames(merged_clean)){
+  mod<-polr(formula = V1_01 ~ EN03 + EN04 + EN06, data = merged_v, Hess = T)
+  summary(mod)
+  coeffs <- coef(summary(mod))
+  p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
+  cbind(coeffs, "p value" = round(p,3))
+  
+}
 
 
 
+################ T-Test ###################################
 
+
+
+t.test(df2$sum,df2$EN03)
+t.test(df2$sum,df2$EN04)
+t.test(df2$sum,df2$EN06)
 
 
 
 
 #Intelligence_data %>% mutate(mycol = coalesce( c(12:23,43:54,74:85,105:116, 139,140,143))) %>%
 #  select(mycol)
-
-
-
-
-
-
-
-
-
-
-
 #v_levels_en3 %>% group_by(EN03) %>%  summarise(n = n(), mean = mean(EN03), sd = sd(EN03))
 
 
 
 
-kruskal.test(V1_01 ~ EN03, v_levels_en3)
 
-mod<-polr(formula = V1_01 ~ EN03 + EN04 + EN06, data = merged_v, Hess = T)
-summary(mod)
-coeffs <- coef(summary(mod))
-p <- pnorm(abs(coeffs[, "t value"]), lower.tail = FALSE) * 2
-cbind(coeffs, "p value" = round(p,3))
+################## Likert Plots ###########################################
 
-anova(lm(EN03~V1_01,data=v_levels_en3))
+#Age
+v_levels_en3$EN03 <- as.character(v_levels_en3$EN03)
+v_levels_en3$EN03[v_levels_en3$EN03 == 1] <- "[18-25]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 2] <- "[26-35]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 3] <- "[36-45]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 4] <- "[46-55]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 5] <- "[56-65]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 6] <- "[66-75]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 7] <- "[76-85]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 8] <- "[<85]"
+v_levels_en3$EN03[v_levels_en3$EN03 == 9] <- "not answered"
+v_levels_en3$EN03 <- as.factor(v_levels_en3$EN03)
+likert_en3 <- likert(v_levels_en3[,1:12], grouping = v_levels_en3$EN03)
+plot(likert_en3)
 
-for (name in colnames(v_levels_en3)){
-  print(name)
-  print(shapiro.test(as.numeric(v_levels_en3[,name])))
-}
-uio = data_frame('sum' = c(tab[0:7]),
-                 'V1_01' = c(1,2,3,4,5,6,7))
 
-library (car)
+#Gender
+v_levels_en4$EN04 <- as.character(v_levels_en4$EN04)
+v_levels_en4$EN04[v_levels_en4$EN04 == 1] <- "female"
+v_levels_en4$EN04[v_levels_en4$EN04 == 2] <- "male"
+v_levels_en4$EN04[v_levels_en4$EN04 == 3] <- "divers"
+v_levels_en4$EN04[v_levels_en4$EN04 == 4] <- "not answered"
+v_levels_en4$EN04 <- as.factor(v_levels_en4$EN04)
 
-tab = as.numeric((table(merged_v$V1_01, merged_v$EN03)))
+likert_en4 <- likert(v_levels_en4[,1:6], grouping = v_levels_en4$EN04)
+plot(likert_en4)
 
-t.test(uio$V1_01,uio$sum,data= uio)
-apply(Intelligence_data_as,2,shapiro.test)
+#Education
+
+v_levels_en6$EN06 <- as.character(v_levels_en6$EN06)
+v_levels_en6$EN06[v_levels_en6$EN06 == 1] <- "High School or equivalent"
+v_levels_en6$EN06[v_levels_en6$EN06 == 2] <- "Apprenticeship/technical or occupational certificate"
+v_levels_en6$EN06[v_levels_en6$EN06 == 3] <- "Bachelor’s degree"
+v_levels_en6$EN06[v_levels_en6$EN06 == 4] <- "Master’s degree"
+v_levels_en6$EN06[v_levels_en6$EN06 == 5] <- "PhD"
+v_levels_en6$EN06[v_levels_en6$EN06 == 6] <- "Other"
+v_levels_en6$EN06[v_levels_en6$EN06 == 6] <- "not answered"
+v_levels_en6$EN06 <- as.factor(v_levels_en6$EN06)
+likert_en6 <- likert(v_levels_en6[,1:12], grouping = v_levels_en6$EN06)
+plot(likert_en6)
+
+
+
+
+###################################### PLOTS ########################################
 #Attribution of intelligence (3 factors)
 #Scenario: lockbox (scenarios 1-6), navigation (scenarios 7-12)
 #Strategy: representation (scenarios 1, 4, 7, 10), linear search (scenarios 2, 5, 8, 11), random guess (3, 6, 9, 12)
