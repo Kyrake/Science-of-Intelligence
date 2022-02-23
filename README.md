@@ -2,6 +2,7 @@
 
 # Plots
 ![alt text](<./Plots/LikertGender.png>) 
+![alt text](<./Plots/qqplot.png>) 
 ![alt text](<./Plots/Strategies.png>) 
 ![alt text](<./Plots/Dimension.png>) 
 ![alt text](<./Plots/Age.png>) 
