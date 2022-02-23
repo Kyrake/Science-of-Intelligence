@@ -20,6 +20,12 @@ Intelligence_data %>% filter(!is.na(V1_01))
 Social_data <- data_intelligence_all[, c(24:42,55:73,86:104,117:135, 139,140,143)]
 Social_data = Social_data[-1,]
 
+myvalues <- as.data.frame(sapply(Intelligence_data, as.numeric))
+Intelligence_data_as <- as.data.frame(sapply(Intelligence_data_a, as.numeric))
+myvalues[is.na(myvalues)] = 0
+myvalues_social <- as.data.frame(sapply(Social_data, as.numeric))
+myvalues_social[is.na(myvalues_social)] = 0
+
 v1_data <- data_intelligence_all[c(12:23,139,140,143)]
 v2_data <- data_intelligence_all[c(43:54,139,140,143)]
 v3_data <- data_intelligence_all[c(74:85,139,140,143)]
@@ -39,16 +45,9 @@ colnames(v2_data) <- colnames(v1_data)
 colnames(v3_data) <- colnames(v1_data)
 colnames(v4_data) <- colnames(v1_data)
 
-
-myvalues <- as.data.frame(sapply(Intelligence_data, as.numeric))
-Intelligence_data_as <- as.data.frame(sapply(Intelligence_data_a, as.numeric))
-myvalues[is.na(myvalues)] = 0
-
 merged_v <- rbind(v1_data, v2_data)
 merged_v <- rbind(merged_v, v3_data)
 merged_v <- rbind(merged_v, v4_data)
-
-
 merged_v <- as.data.frame(unclass(merged_v),                     # Convert all columns to factor
                           stringsAsFactors = TRUE)
 
@@ -114,6 +113,14 @@ for(i in 1:length(myvalues)){
   }
 }
 
+for(i in 1:length(myvalues_social)){
+  count = i
+  if(count +1 <= length(myvalues_social)){
+    tab = count +1
+    levi = leveneTest(myvalues_social[,i], myvalues_social[,tab])
+    print(levi)
+  }
+}
 
 ########################## Chi Square #############################################
 
