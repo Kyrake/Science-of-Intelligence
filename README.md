@@ -15,7 +15,7 @@ https://github.com/Kyrake/Science-of-Intelligence/assets/142335932/f5c8a191-12e1
 # Methods
 
 <p align="center">
-<img src="Plots/image1.png" width="500" height="500">
+<img src="Plots/image1.png" width="400" height="400">
 </p>
 
 # Results
