@@ -4,17 +4,14 @@ The advantages in the field of robotics during the last years are resulting in a
 
 ## Table of contents
    1. [Motivation](#Updates)
-   1. [Installation](#installation)
-   1. [Training and Testing Agent](#example)
    1. [Documentation](#documentation)
-   1. [Simulation Environment](#simulation-environment)
-   1. [Baselines](#baselines)
-   1. [License](#license)
-   1. [Acknowledgments](#acknowledgments)
-   1. [References](#references-and-citation)
+   1. [Results](#simulation-environment)
+
+      
+## Introduction
 
 
-# Plots
+# Results
 ![alt text](<./Plots/LikertGender.png>) 
 ![alt text](<./Plots/qqplot.png>) 
 ![alt text](<./Plots/Strategies.png>) 
