@@ -12,6 +12,7 @@ The advantages in the field of robotics during the last years are resulting in a
 
 https://github.com/Kyrake/Science-of-Intelligence/assets/142335932/f5c8a191-12e1-40df-83ef-9ec48e79a4e4
 
+# Methods
 # Results
 ![alt text](<./Plots/LikertGender.png>) 
 ![alt text](<./Plots/qqplot.png>) 
